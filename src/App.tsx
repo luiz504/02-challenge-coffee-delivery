@@ -1,14 +1,16 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
-import viteLogo from '../../../../../../../../vite.svg'
+import viteLogo from '../public/vite.svg'
 import './App.css'
+import { TestPath } from './components/TestPath'
 
-function App() {
+export function App() {
   const [count, setCount] = useState(0)
 
   return (
     <div className="App">
       <div>
+        <TestPath />
         <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
@@ -31,5 +33,3 @@ function App() {
     </div>
   )
 }
-
-export default App
