@@ -1,10 +1,14 @@
 import React from 'react'
+import styled from 'styled-components'
 import { Logo } from '~/assets/logo'
 
-// import { Container } from './styles';
+const Container = styled.div`
+  background: ${({ theme }) => theme['base-button']};
+  color: ${({ theme }) => theme['base-label']};
+`
 
 export const TestPath: React.FC = () => (
-  <div>
+  <Container>
     <Logo />
-  </div>
+  </Container>
 )
