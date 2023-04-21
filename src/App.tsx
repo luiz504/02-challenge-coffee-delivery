@@ -1,40 +1,27 @@
-import { useState } from 'react'
 import { ThemeProvider } from 'styled-components'
-import reactLogo from './assets/react.svg'
+
 import viteLogo from '../public/logo.svg'
-import './App.css'
 
 import { TestPath } from './components/TestPath'
 
 import { defaultTheme } from './styles/theme/default'
 
 export function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <ThemeProvider theme={defaultTheme}>
       <div className="App">
         <div>
           <TestPath />
-          <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-            <img src={viteLogo} className="logo" alt="Vite logo" />
-          </a>
-          <a href="https://reactjs.org" target="_blank" rel="noreferrer">
-            <img src={reactLogo} className="logo react" alt="React logo" />
-          </a>
+
+          <img
+            draggable={false}
+            src={viteLogo}
+            className="logo"
+            alt="Vite logo"
+          />
+
+          <h1>Coffe Delivery</h1>
         </div>
-        <h1>Vite + React</h1>
-        <div className="card">
-          <button onClick={() => setCount((count) => count + 1)}>
-            count is {count}
-          </button>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test HMR
-          </p>
-        </div>
-        <p className="read-the-docs">
-          Click on the Vite and React logos to learn more
-        </p>
       </div>
     </ThemeProvider>
   )
