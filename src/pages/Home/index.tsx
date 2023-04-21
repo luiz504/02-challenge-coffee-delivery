@@ -1,5 +1,8 @@
-import React from 'react'
+import { Banner } from './components/Banner'
+import { HomeContainer } from './styles'
 
-// import { Container } from './styles';
-
-export const Home: React.FC = () => <div> Home </div>
+export const Home = () => (
+  <HomeContainer>
+    <Banner />
+  </HomeContainer>
+)
