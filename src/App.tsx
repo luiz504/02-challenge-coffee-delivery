@@ -5,6 +5,7 @@ import viteLogo from '../public/logo.svg'
 import { TestPath } from './components/TestPath'
 
 import { defaultTheme } from './styles/theme/default'
+import { GlobalStyles } from './styles/global'
 
 export function App() {
   return (
@@ -23,6 +24,7 @@ export function App() {
           <h1>Coffe Delivery</h1>
         </div>
       </div>
+      <GlobalStyles />
     </ThemeProvider>
   )
 }
