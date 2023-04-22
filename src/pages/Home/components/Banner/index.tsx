@@ -57,7 +57,9 @@ export const Banner: React.FC = () => {
           </SellPointsList>
         </div>
 
-        <img src={coffeeImg} alt="" draggable={false} loading="eager" />
+        <div className="img-col">
+          <img src={coffeeImg} alt="" draggable={false} loading="eager" />
+        </div>
       </div>
     </BannerContainer>
   )

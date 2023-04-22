@@ -29,4 +29,5 @@ export const CoffeeList = styled.section`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
   gap: 2.5rem 2rem;
+  margin-bottom: 2rem;
 `
