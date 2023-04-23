@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { Trash } from 'phosphor-react'
 
 import { Counter } from '~/components/Counter'
+import { ButtonBase } from '~/components/buttons/ButtonBase'
 
 import {
   BtnConfirm,
@@ -11,21 +13,46 @@ import {
   ProductNameAmountSection,
 } from './styles'
 
-import { ButtonBase } from '~/components/buttons/ButtonBase'
-import { Trash } from 'phosphor-react'
-import { Coffee } from '~/@types/Coffe'
+import { CartContext } from '~/context/cart'
+import { Product } from '~/context/cart/reducer'
 
 export const CardProducts: React.FC = () => {
-  const totalItems = Number(29.7).toFixed(2)
-  const deliveryFee = Number(3.5).toFixed(2)
-  const total = Number(29.7 + 3.5).toFixed(2)
-  const cartList: (Coffee & { amount: number })[] = []
+  const {
+    products,
+    incrementProductAmount,
+    decrementProductAmount,
+    removeProductFromCart,
+  } = useContext(CartContext)
+
+  const totalProductsPrice = products.reduce((prev, cur) => {
+    if (cur.price > 0) {
+      const totalprice = cur.price * cur.amount
+      return prev + totalprice
+    }
+    return prev
+  }, 0)
+
+  const deliveryPrice = 5
+
+  const totalItemsFixed = Number(totalProductsPrice).toFixed(2)
+  const deliveryPriceFixed = Number(deliveryPrice).toFixed(2)
+  const totalFixed = Number(totalProductsPrice + deliveryPrice).toFixed(2)
+
+  const handleIncrementProduct = (product: Product) => {
+    incrementProductAmount(product)
+  }
+  const handleDecrementProduct = (productId: string) => {
+    decrementProductAmount(productId)
+  }
+  const handleRemoveProduct = (productId: string) => {
+    removeProductFromCart(productId)
+  }
 
   return (
     <ContainerCardProducts>
       <ProductsList>
-        {!!cartList.length &&
-          cartList?.map((product, index, arr) => (
+        {!!products.length &&
+          products?.map((product, index, arr) => (
             <React.Fragment key={product.id}>
               <ProductRow>
                 <div className="thumb-placeholder">
@@ -36,9 +63,17 @@ export const CardProducts: React.FC = () => {
                   <span>{product.name}</span>
 
                   <div>
-                    <Counter size="small" />
+                    <Counter
+                      size="small"
+                      value={product.amount}
+                      onDecrement={() => handleDecrementProduct(product.id)}
+                      onIncrement={() => handleIncrementProduct(product)}
+                    />
 
-                    <ButtonBase size="small">
+                    <ButtonBase
+                      size="small"
+                      onClick={() => handleRemoveProduct(product.id)}
+                    >
                       <Trash size={16} /> REMOVE
                     </ButtonBase>
                   </div>
@@ -55,20 +90,20 @@ export const CardProducts: React.FC = () => {
             </React.Fragment>
           ))}
 
-        {!cartList.length && <div> Empty Cart</div>}
+        {!products.length && <div> Empty Cart</div>}
       </ProductsList>
 
       <PriceDescriptionSection>
         <div>
-          <span>Total of Items</span> <span>$ {totalItems}</span>
+          <span>Total of Items</span> <span>$ {totalItemsFixed}</span>
         </div>
 
         <div>
-          <span>Delivery</span> <span>$ {deliveryFee}</span>
+          <span>Delivery</span> <span>$ {deliveryPriceFixed}</span>
         </div>
 
         <div>
-          <strong>Total</strong> <strong>$ {total}</strong>
+          <strong>Total</strong> <strong>$ {totalFixed}</strong>
         </div>
       </PriceDescriptionSection>
 

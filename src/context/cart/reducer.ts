@@ -13,7 +13,7 @@ export type ProductsState = {
 export type ActionType =
   | { type: 'INCREMENT_PRODUCT'; payload: { product: Coffee } }
   | { type: 'DECREMENT_PRODUCT'; payload: { product_id: string } }
-  | { type: 'REMOVE_ALL_PRODUCT'; payload: { product_id: string } }
+  | { type: 'REMOVE_PRODUCT'; payload: { product_id: string } }
 
 export function productsReducer(state: ProductsState, actions: ActionType) {
   switch (actions.type) {
@@ -46,13 +46,13 @@ export function productsReducer(state: ProductsState, actions: ActionType) {
         const oldAmount = draft.products[sameProductIndex].amount
 
         if (oldAmount < 2) {
-          draft.products.splice(sameProductIndex)
+          draft.products.splice(sameProductIndex, 1)
         } else {
           draft.products[sameProductIndex].amount = oldAmount - 1
         }
       })
     }
-    case 'REMOVE_ALL_PRODUCT': {
+    case 'REMOVE_PRODUCT': {
       return produce(state, (draft) => {
         const productIndex = draft.products.findIndex(
           (p) => p.id === actions.payload.product_id,
@@ -60,7 +60,7 @@ export function productsReducer(state: ProductsState, actions: ActionType) {
 
         if (productIndex < 0) return state
 
-        draft.products.splice(productIndex)
+        draft.products.splice(productIndex, 1)
       })
     }
     default: {

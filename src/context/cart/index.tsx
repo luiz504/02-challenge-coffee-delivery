@@ -37,7 +37,7 @@ export const CartContextProvider: React.FC<{ children: ReactNode }> = ({
   const removeProductFromCart = (productId: string) => {
     if (productId) {
       dispatchProducts({
-        type: 'REMOVE_ALL_PRODUCT',
+        type: 'REMOVE_PRODUCT',
         payload: { product_id: productId },
       })
     }
