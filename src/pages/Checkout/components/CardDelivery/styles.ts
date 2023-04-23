@@ -22,10 +22,37 @@ export const InputsContainer = styled.div`
   .row-3 {
     display: grid;
     grid-template-columns: 200px 1fr;
+
+    @media (max-width: 768px) {
+      display: flex;
+      flex-wrap: wrap;
+      input:nth-child(1) {
+        min-width: 200px;
+      }
+      input:nth-child(2) {
+        min-width: 200px;
+        flex: 1;
+      }
+    }
   }
   .row-4 {
     display: grid;
     grid-template-columns: 200px 1fr 60px;
+
+    @media (max-width: 768px) {
+      display: flex;
+      flex-wrap: wrap;
+      input:nth-child(1) {
+        min-width: 200px;
+      }
+      input:nth-child(2) {
+        min-width: 200px;
+        flex: 1;
+      }
+      input:nth-child(3) {
+        min-width: 60px;
+      }
+    }
   }
 `
 

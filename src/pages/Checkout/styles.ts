@@ -8,13 +8,24 @@ export const ContainerCheckout = styled.div`
   main {
     max-width: 77rem;
     display: grid;
-    grid-template-columns: minmax(640px, 1fr) 448px;
+    grid-template-columns: minmax(500px, 640px) 448px;
     gap: 8rem;
 
     > section {
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
+    }
+
+    @media (max-width: 1280px) {
+      width: 100%;
+      gap: 1rem;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    @media (max-width: 1024px) {
+      max-width: 600px;
+      grid-template-columns: 1fr;
     }
   }
 `
