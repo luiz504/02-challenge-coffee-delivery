@@ -9,8 +9,9 @@ import {
   ShoppingBtn,
 } from './styles'
 
+import { Counter } from '~/components/Counter'
+
 import { Coffee } from '~/@types/Coffe'
-import { Counter } from './Counter'
 
 type CoffeeCardProps = {
   item: Coffee

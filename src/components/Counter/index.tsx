@@ -1,15 +1,18 @@
-import { Minus, Plus } from 'phosphor-react'
 import React, { useState } from 'react'
+import { Minus, Plus } from 'phosphor-react'
 
 import { CounterContainer, Btn } from './styles'
 
 type CounterProps = {
   defaultValue?: number
   max?: number
+  size?: 'regular' | 'small'
 }
+
 export const Counter: React.FC<CounterProps> = ({
   defaultValue = 0,
   max = Infinity,
+  size = 'regular',
 }) => {
   const [value, setValue] = useState(defaultValue)
 
@@ -39,6 +42,7 @@ export const Counter: React.FC<CounterProps> = ({
         disabled={value <= 0}
         type="button"
         onClick={handleDecrement}
+        size={size}
       >
         <Minus size={14} weight="bold" />
       </Btn>
@@ -50,6 +54,7 @@ export const Counter: React.FC<CounterProps> = ({
         type="button"
         disabled={value === max}
         onClick={handleIncrement}
+        size={size}
       >
         <Plus size={14} weight="bold" />
       </Btn>

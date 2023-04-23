@@ -1,8 +1,10 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const CounterContainer = styled.div`
   display: flex;
   align-items: center;
+  width: fit-content;
+  height: fit-content;
   background-color: ${({ theme }) => theme['base-button']};
   border-radius: 6px;
 
@@ -15,7 +17,7 @@ export const CounterContainer = styled.div`
   }
 `
 
-export const Btn = styled.button`
+export const Btn = styled.button<{ size?: 'regular' | 'small' }>`
   color: ${({ theme }) => theme.purple};
   background-color: ${({ theme }) => theme['base-button']};
 
@@ -36,6 +38,23 @@ export const Btn = styled.button`
     border-top-right-radius: inherit;
     border-bottom-right-radius: inherit;
   }
+
+  ${({ size }) =>
+    size === 'small' &&
+    css`
+      &.minus {
+        padding: 0.6156rem 0.25rem 0.6156rem 0.5rem;
+        border-top-left-radius: inherit;
+        border-bottom-left-radius: inherit;
+      }
+
+      &.plus {
+        padding: 0.6156rem 0.5rem 0.6156rem 0.25rem;
+        border-top-right-radius: inherit;
+        border-bottom-right-radius: inherit;
+      }
+    `}
+
   &:disabled {
     cursor: not-allowed;
   }
@@ -46,6 +65,6 @@ export const Btn = styled.button`
     transform: scale(1.1);
   }
   &:focus {
-    outline: 2px solid ${({ theme }) => theme['purple-dark']};
+    outline: 2px solid ${({ theme }) => theme.purple};
   }
 `
