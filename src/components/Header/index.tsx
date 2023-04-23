@@ -1,13 +1,24 @@
+import { useContext } from 'react'
 import { MapPin, ShoppingCart } from 'phosphor-react'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { ReactComponent as Logo } from '~/assets/logo.svg'
 
 import { HeaderContainer, BtnLocation, BtnCard } from './styles'
-import { Link, useNavigate } from 'react-router-dom'
+
+import { CartContext } from '~/context/cart'
 
 export const Header = () => {
   const navigate = useNavigate()
-  const amountOfProducts = 3
+
+  const { products } = useContext(CartContext)
+
+  const amountOfProducts = products.reduce((prev, cur) => {
+    if (cur.amount > 0) {
+      return prev + cur.amount
+    }
+    return prev
+  }, 0)
 
   return (
     <HeaderContainer>

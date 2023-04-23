@@ -1,47 +1,32 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Minus, Plus } from 'phosphor-react'
 
 import { CounterContainer, Btn } from './styles'
 
 type CounterProps = {
-  defaultValue?: number
-  max?: number
   size?: 'regular' | 'small'
+  onDecrement?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+  onIncrement?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+  disablePlus?: boolean
+  disableMinus?: boolean
+  value?: number
 }
 
 export const Counter: React.FC<CounterProps> = ({
-  defaultValue = 0,
-  max = Infinity,
   size = 'regular',
+  value = 0,
+  onDecrement,
+  onIncrement,
+  disableMinus,
+  disablePlus,
 }) => {
-  const [value, setValue] = useState(defaultValue)
-
-  const handleIncrement = () => {
-    setValue((prev) => {
-      const newValue = prev + 1
-      if (newValue > max) return prev
-
-      return newValue
-    })
-  }
-
-  const handleDecrement = () => {
-    setValue((prev) => {
-      const newValue = prev - 1
-
-      if (newValue < 0) return prev
-
-      return newValue
-    })
-  }
-
   return (
     <CounterContainer>
       <Btn
         className="minus"
-        disabled={value <= 0}
+        disabled={disableMinus || value <= 0}
         type="button"
-        onClick={handleDecrement}
+        onClick={onDecrement}
         size={size}
       >
         <Minus size={14} weight="bold" />
@@ -52,8 +37,8 @@ export const Counter: React.FC<CounterProps> = ({
       <Btn
         className="plus"
         type="button"
-        disabled={value === max}
-        onClick={handleIncrement}
+        disabled={disablePlus}
+        onClick={onIncrement}
         size={size}
       >
         <Plus size={14} weight="bold" />

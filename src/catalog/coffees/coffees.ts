@@ -15,7 +15,7 @@ import hawaiianThumb from '~/assets/thumbnail-coffee/hawaiian.png'
 import arabicThumb from '~/assets/thumbnail-coffee/arabic.png'
 import irishThumb from '~/assets/thumbnail-coffee/irish.png'
 
-const coffeeDict: Record<string, Omit<Coffee, 'id'>> = {
+export const coffeeDict: Record<string, Omit<Coffee, 'id'>> = {
   espresso_tradicional: {
     name: 'Traditional Espresso',
     description: 'The traditional coffee made with hot water and ground beans',

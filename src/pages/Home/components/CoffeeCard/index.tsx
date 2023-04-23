@@ -12,13 +12,28 @@ import {
 import { Counter } from '~/components/Counter'
 
 import { Coffee } from '~/@types/Coffe'
+import { useContext } from 'react'
+import { CartContext } from '~/context/cart'
 
 type CoffeeCardProps = {
   item: Coffee
 }
 
 export const CoffeeCard = ({ item }: CoffeeCardProps) => {
+  const { products, incrementProductAmount, decrementProductAmount } =
+    useContext(CartContext)
   const formatedPrice = Number(item.price).toFixed(2)
+
+  const amountOfProduct =
+    products.find((product) => product.id === item.id)?.amount || 0
+
+  const handleDecrement = () => {
+    decrementProductAmount(item.id)
+  }
+
+  const handleIncrement = () => {
+    incrementProductAmount(item)
+  }
 
   return (
     <CoffeCardContainer>
@@ -44,7 +59,11 @@ export const CoffeeCard = ({ item }: CoffeeCardProps) => {
           $ <strong>{formatedPrice}</strong>
         </span>
 
-        <Counter />
+        <Counter
+          value={amountOfProduct}
+          onDecrement={handleDecrement}
+          onIncrement={handleIncrement}
+        />
 
         <ShoppingBtn type="button">
           <ShoppingCart size={22} weight="fill" />

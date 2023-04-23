@@ -3,7 +3,7 @@ import { CoffeeCard } from './components/CoffeeCard'
 
 import { HomeContainer, CoffeeList } from './styles'
 
-import { coffeeList } from './coffeeList'
+import { coffeeList } from '~/catalog/coffees/coffees'
 
 export const Home = () => (
   <HomeContainer>
