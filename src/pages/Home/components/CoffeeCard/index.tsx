@@ -9,17 +9,21 @@ import {
   ShoppingBtn,
 } from './styles'
 
+import { useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 import { Counter } from '~/components/Counter'
 
-import { Coffee } from '~/@types/Coffe'
-import { useContext } from 'react'
 import { CartContext } from '~/context/cart'
+
+import { Coffee } from '~/@types/Coffe'
 
 type CoffeeCardProps = {
   item: Coffee
 }
 
 export const CoffeeCard = ({ item }: CoffeeCardProps) => {
+  const navigate = useNavigate()
   const { products, incrementProductAmount, decrementProductAmount } =
     useContext(CartContext)
   const formatedPrice = Number(item.price).toFixed(2)
@@ -33,6 +37,12 @@ export const CoffeeCard = ({ item }: CoffeeCardProps) => {
 
   const handleIncrement = () => {
     incrementProductAmount(item)
+  }
+  const handleCheckoutFromProduct = () => {
+    if (amountOfProduct < 1) {
+      handleIncrement()
+    }
+    navigate('/checkout')
   }
 
   return (
@@ -65,7 +75,11 @@ export const CoffeeCard = ({ item }: CoffeeCardProps) => {
           onIncrement={handleIncrement}
         />
 
-        <ShoppingBtn type="button">
+        <ShoppingBtn
+          type="button"
+          aria-label="checkout-product"
+          onClick={handleCheckoutFromProduct}
+        >
           <ShoppingCart size={22} weight="fill" />
         </ShoppingBtn>
       </Footer>
