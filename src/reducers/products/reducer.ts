@@ -14,6 +14,7 @@ export type ActionType =
   | { type: 'INCREMENT_PRODUCT'; payload: { product: Coffee } }
   | { type: 'DECREMENT_PRODUCT'; payload: { product_id: string } }
   | { type: 'REMOVE_PRODUCT'; payload: { product_id: string } }
+  | { type: 'RESET_PRODUCTS' }
 
 export function productsReducer(state: ProductsState, actions: ActionType) {
   switch (actions.type) {
@@ -61,6 +62,11 @@ export function productsReducer(state: ProductsState, actions: ActionType) {
         if (productIndex < 0) return state
 
         draft.products.splice(productIndex, 1)
+      })
+    }
+    case 'RESET_PRODUCTS': {
+      return produce(state, (draft) => {
+        draft.products = []
       })
     }
     default: {

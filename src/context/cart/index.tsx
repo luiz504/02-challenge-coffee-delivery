@@ -8,6 +8,7 @@ type CartContextType = {
   incrementProductAmount: (produdct: Coffee) => void
   decrementProductAmount: (produdctId: string) => void
   removeProductFromCart: (produdctId: string) => void
+  resetCart: () => void
 }
 
 export const CartContext = createContext({} as CartContextType)
@@ -42,6 +43,9 @@ export const CartContextProvider: React.FC<{ children: ReactNode }> = ({
       })
     }
   }
+  const resetCart = () => {
+    dispatchProducts({ type: 'RESET_PRODUCTS' })
+  }
 
   return (
     <CartContext.Provider
@@ -50,6 +54,7 @@ export const CartContextProvider: React.FC<{ children: ReactNode }> = ({
         incrementProductAmount,
         decrementProductAmount,
         removeProductFromCart,
+        resetCart,
       }}
     >
       {children}

@@ -7,7 +7,7 @@
   - [x] Listing of available products (coffees) for purchase
   - [x] Adding a specific quantity of items to the cart
   - [x] Increasing or removing the quantity of items in the cart
-  - [ ] A form for the user to fill in their address
+  - [x] A form for the user to fill in their address
   - [x] Displaying the total number of items in the cart in the Header
   - [x] Displaying the total value of the items in the cart multiplied by their value
 
@@ -21,3 +21,11 @@
 - Lists and keys in ReactJS
 - Properties
 - Componentization
+
+
+
+####To run the Project
+
+```npm install```
+
+```npm run dev```

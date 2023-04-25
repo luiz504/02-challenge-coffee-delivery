@@ -8,7 +8,7 @@ import { BtnsRows, PaymentOptionBtn, ErrorFeedback } from './styles'
 
 import { FormAdressPaymentTypeFields } from '../..'
 
-type PaymentMethod = 'CREDIT-CARD' | 'DEBIT-CARD' | 'MONEY'
+export type PaymentMethod = 'CREDIT-CARD' | 'DEBIT-CARD' | 'MONEY'
 
 export const CardPayment: React.FC = () => {
   const theme = useTheme()
