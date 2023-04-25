@@ -1,7 +1,7 @@
 import React, { ReactNode, createContext, useReducer } from 'react'
 import { Coffee } from '~/@types/Coffe'
 
-import { Product, productsReducer } from './reducer'
+import { Product, productsReducer } from '~/reducers/products/reducer'
 
 type CartContextType = {
   products: Product[]

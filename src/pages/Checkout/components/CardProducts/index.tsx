@@ -14,9 +14,11 @@ import {
 } from './styles'
 
 import { CartContext } from '~/context/cart'
-import { Product } from '~/context/cart/reducer'
+import { Product } from '~/reducers/products/reducer'
+import { useNavigate } from 'react-router-dom'
 
 export const CardProducts: React.FC = () => {
+  const navigate = useNavigate()
   const {
     products,
     incrementProductAmount,
@@ -31,8 +33,9 @@ export const CardProducts: React.FC = () => {
     }
     return prev
   }, 0)
+  const isCartEmpty = !products.length
 
-  const deliveryPrice = 5
+  const deliveryPrice = isCartEmpty ? 0 : 5
 
   const totalItemsFixed = Number(totalProductsPrice).toFixed(2)
   const deliveryPriceFixed = Number(deliveryPrice).toFixed(2)
@@ -108,7 +111,13 @@ export const CardProducts: React.FC = () => {
       </PriceDescriptionSection>
 
       <footer>
-        <BtnConfirm type="button">Confirm order</BtnConfirm>
+        {isCartEmpty && (
+          <BtnConfirm type="button" onClick={() => navigate('/')}>
+            Go to Coffees Catalog
+          </BtnConfirm>
+        )}
+
+        {!isCartEmpty && <BtnConfirm type="submit">Confirm order</BtnConfirm>}
       </footer>
     </ContainerCardProducts>
   )

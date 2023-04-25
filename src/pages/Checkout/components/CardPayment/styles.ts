@@ -24,3 +24,9 @@ export const PaymentOptionBtn = styled(ButtonBase)<{ selected: boolean }>`
           }
         `}
 `
+
+export const ErrorFeedback = styled.div`
+  grid-column: 1/-1;
+  font-size: 0.875rem;
+  color: ${({ theme }) => theme['red-base']};
+`

@@ -30,7 +30,7 @@ export const Header = () => {
         <div className="btns-row">
           <BtnLocation type="button">
             <MapPin weight="fill" size={22} />
-            <span>New Yort, NY</span>
+            <span>Burbank, CA</span>
           </BtnLocation>
 
           <BtnCard

@@ -65,6 +65,10 @@ export const Input = styled.input`
   font-size: 0.875rem;
   line-height: 130%;
 
+  :focus {
+    outline: 2px solid ${({ theme }) => theme['yellow-dark']};
+  }
+
   &::placeholder {
   }
 `

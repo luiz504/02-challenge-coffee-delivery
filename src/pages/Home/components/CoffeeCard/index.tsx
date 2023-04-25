@@ -1,3 +1,5 @@
+import { useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { ShoppingCart } from 'phosphor-react'
 
 import {
@@ -8,9 +10,6 @@ import {
   Footer,
   ShoppingBtn,
 } from './styles'
-
-import { useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 import { Counter } from '~/components/Counter'
 

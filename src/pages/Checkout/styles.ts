@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const ContainerCheckout = styled.div`
+export const ContainerCheckout = styled.form`
   display: flex;
   justify-content: center;
   padding: 2.5rem 1rem;

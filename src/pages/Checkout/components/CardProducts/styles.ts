@@ -78,6 +78,7 @@ export const PriceDescriptionSection = styled.div`
   }
 `
 export const BtnConfirm = styled.button`
+  user-select: none;
   width: 100%;
   background-color: ${({ theme }) => theme.yellow};
   padding: 0.75rem;
